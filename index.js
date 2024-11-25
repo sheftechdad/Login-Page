@@ -39,7 +39,7 @@ app.post("/register", async (req, res) => {
   );
   
   if (checkresult.rows.length >0){
-    res.send("Email already exist.Try logging in.")
+    res.send("Email already exist.Try logging in.");
 
   } else {
     const result = await db.query("INSERT INTO users(email,password) VALUES ($1 , $2)",

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
@@ -34,30 +34,49 @@ app.post("/register", async (req, res) => {
   const password = req.body.password;
   console.log(email);
   console.log(password);
-  const checkresult = await db.query("SELECT * FROM users where email = $1",
-    [email]
-  );
-  
-  if (checkresult.rows.length >0){
-    res.send("Email already exist.Try logging in.");
+  try{
+    const checkresult = await db.query("SELECT * FROM users where email = $1",
+      [email]
+    );
+    
+    if (checkresult.rows.length >0){
+      res.send("Email already exist.Try logging in.");
 
-  } else {
-    const result = await db.query("INSERT INTO users(email,password) VALUES ($1 , $2)",
-    [email,password]
-  );
-  console.log(result);
-  res.render("secrets.ejs");
+    } else {
+      const result = await db.query("INSERT INTO users(email,password) VALUES ($1 , $2)",
+      [email,password]
+    );
+    console.log(result);
+    res.render("secrets.ejs");
+  }
+  
+}catch(err){
+  console.log(err);
+  
 }
-  
-  
 });
 
 app.post("/login", async (req, res) => {
   const email = req.body.username;
   const password = req.body.password;
-  console.log(email);
-  console.log(password);
-  
+  try{
+    const result = await db.query("SELECT * FROM users WHERE email = $1",[email]);
+    if (result.rows.length > 0){
+      const user =result.rows[0];
+      const strongpassword=user.password;
+      if(password===strongpassword){
+        res.render("secrets.ejs")
+      }else{
+        res.send("Incoreect Password");
+      }
+
+    }else{
+      res.send("User Not Found");
+    }
+
+  }catch(err){
+    console.log(err);
+  } 
 
 
 });

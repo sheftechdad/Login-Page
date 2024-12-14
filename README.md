@@ -23,6 +23,7 @@ This project is a basic login and registration system built using **Node.js**, *
     
     ```bash
     npm install
+
     
     ```
     
@@ -90,16 +91,12 @@ This project is a basic login and registration system built using **Node.js**, *
 -   **Node.js**: Backend runtime environment.
 -   **Express.js**: Web framework for Node.js.
 -   **PostgreSQL**: Database for storing user data.
--   **dotenv**: For environment variable management.
+- 
 
 ## Folder Structure
 
 ```
-login-registration-system/  
-├── routes/  
-│   ├── auth.js         # Handles login and registration routes  
-├── db/  
-│   ├── db.js           # Database connection setup  
+
 ├── views/  
 │   ├── login.ejs       # Login page  
 │   ├── register.ejs    # Registration page  
@@ -126,7 +123,5 @@ This project is licensed under the MIT License.
 
 ----------
 
-Enjoy building your project! 🚀
 
-```
 

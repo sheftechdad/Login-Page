@@ -1,4 +1,8 @@
 
+
+
+![image](https://github.com/user-attachments/assets/7baa8607-e2b3-4073-8def-93ec0ab12596)
+
 # Simple Login and Registration System  
 
 This project is a basic login and registration system built using **Node.js**, **Express.js**, and **PostgreSQL**. It allows users to register with their email and password and log in only if their credentials are stored in the database.
